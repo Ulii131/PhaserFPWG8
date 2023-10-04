@@ -47,6 +47,23 @@ create(){
   this.physics.add.collider(this.player, platforms);
   this.cursors = this.input.keyboard.createCursorKeys();
 
+  // CREACIÓN DE LAS ESTRELLAS
+  let stars = this.physics.add.group({
+    key: 'star',
+    repeat: 11,
+    setXY: { x: 12, y: 0, stepX: 70 }
+  });
+
+  stars.children.iterate(function (child) {
+    child.setBounceY(Phaser.Math.FloatBetween(0.2, 0.4));
+  });
+
+  // Configura las colisiones entre las estrellas y las plataformas
+  this.physics.add.collider(stars, platforms);
+
+  // Configura la recolección de estrellas por parte del jugador
+  this.physics.add.overlap(this.player, stars, collectStar, null, this);
+
 }
 update() {
   if (this.cursors.left.isDown) {
@@ -66,7 +83,10 @@ update() {
   }
 }
 
-
+}
+// Función para recolectar estrellas
+function collectStar(player, star) {
+  star.disableBody(true, true);
 }
 
 export default Scene_play;
