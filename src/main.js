@@ -1,5 +1,6 @@
 import Bootloader from './Bootloader.js';
 import Scene_play from './scenes/Scene_play.js';
+import Menu from './scenes/Menu.js';
 
 const config = {
     title: "FPWTP04",
@@ -24,6 +25,7 @@ const config = {
     },
     scene: [
         Bootloader,
+        Menu,
         Scene_play
     ]
 };
