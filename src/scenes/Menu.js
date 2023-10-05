@@ -19,18 +19,18 @@ class Menu extends Phaser.Scene{
     
 
         this.add.image(400,300, 'MenuBG');
-        this.startButton = this.add.spritesheet(400,300, 'button').setInteractive();
+        this.startButton = this.add.image(400,300, 'button').setInteractive();
         
-        this.startButton.on('pointerover', ()=>{
-            this.startButton.setFrame(1);
-        });
+        //this.startButton.on('pointerover', ()=>{
+        //    this.startButton.setFrame(1);
+        //});
 
-        this.startButton.on('pointerout',() => {
-            this.startButton.setFrame(0);
-        });
+        //this.startButton.on('pointerout',() => {
+        //    this.startButton.setFrame(0);
+        //});
 
         this.startButton.on('pointerdown',() => {
-            this.startButton.scene.start(Scene_play.js);
+           this.scene.start('Scene_play');
         });
 
 

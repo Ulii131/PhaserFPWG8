@@ -3,6 +3,7 @@ import Scene_play from './scenes/Scene_play.js';
 import Menu from './scenes/Menu.js';
 
 const config = {
+    scene: [Bootloader, Menu, Scene_play],
     title: "FPWTP04",
     version: "0.0.1",
     type: Phaser.AUTO,
@@ -23,11 +24,7 @@ const config = {
             }
         }
     },
-    scene: [
-        Bootloader,
-        Menu,
-        Scene_play
-    ]
+    
 };
 
 new Phaser.Game(config);
