@@ -78,6 +78,12 @@ class Scene_play extends Phaser.Scene
       score += 10;
       scoreText.setText('Score: ' + score);
 
+      contador++;
+
+      if (contador === 12) {
+        this.scene.start('Winner');
+      }
+      
       if (stars.countActive(true) === 0)
       {
         stars.children.iterate(function (child) {
@@ -102,8 +108,8 @@ class Scene_play extends Phaser.Scene
     
       player.setTint(0xff0000);
       player.anims.play('turn');
-    
-      gameOver = true;
+
+      this.scene.start('Game_over');
     }    
 
     //CREACION FISICAS
