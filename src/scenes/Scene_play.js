@@ -55,6 +55,8 @@ class Scene_play extends Phaser.Scene
       child.setBounceY(Phaser.Math.FloatBetween(0.2, 0.4));
     });
 
+    let contador = 0;
+
     //puntuacion que se mostrara en pantalla
     let score = 0;
     let scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
@@ -81,9 +83,10 @@ class Scene_play extends Phaser.Scene
       contador++;
 
       if (contador === 12) {
-        this.scene.start('Winner');
-      }
+      this.scene.start('Winner');
       
+     }
+
       if (stars.countActive(true) === 0)
       {
         stars.children.iterate(function (child) {
