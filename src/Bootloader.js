@@ -20,6 +20,12 @@ class Bootloader extends Phaser.Scene {
         this.load.audio('Lose', './assets/lose.mp3');
         this.load.audio('Win', './assets/win.wav');
 
+        
+        // Scene_play2
+        this.load.image('fondo', '../assets/BG.png');
+        this.load.image('lava', '../assets/lava.png');
+
+
         this.load.on("complete", () =>{
             this.scene.start("Menu");
         });
