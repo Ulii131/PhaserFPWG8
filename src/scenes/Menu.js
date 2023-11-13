@@ -30,7 +30,7 @@ class Menu extends Phaser.Scene{
         //});
 
         this.startButton.on('pointerdown',() => {
-           this.scene.start('Scene_play2');
+           this.scene.start('Scene_play');
         });
 
 

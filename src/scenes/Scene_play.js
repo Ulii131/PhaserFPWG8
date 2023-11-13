@@ -83,7 +83,7 @@ class Scene_play extends Phaser.Scene
       contador++;
 
       if (contador === 12) {
-      this.scene.start('Winner');
+      this.scene.start('Scene_play2');
       
      }
 
