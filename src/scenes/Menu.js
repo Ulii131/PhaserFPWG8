@@ -19,7 +19,7 @@ class Menu extends Phaser.Scene{
     
 
         this.add.image(400,300, 'MenuBG');
-        this.startButton = this.add.image(400,300, 'button').setInteractive();
+        this.startButton = this.add.image(415, 370, 'button').setInteractive();
         
         //this.startButton.on('pointerover', ()=>{
         //    this.startButton.setFrame(1);
@@ -30,7 +30,7 @@ class Menu extends Phaser.Scene{
         //});
 
         this.startButton.on('pointerdown',() => {
-           this.scene.start('Scene_play');
+           this.scene.start('Scene_play2');
         });
 
 
