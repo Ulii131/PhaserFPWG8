@@ -94,18 +94,27 @@ class Scene_play2 extends Phaser.Scene {
     // Código para colisión lava-personaje
     let bombsLevel2 = this.physics.add.group({
       key: 'bomb',
-      repeat: 4,
-      setXY: { x: 170, y: 0, stepX: 100 }
+      repeat: 2, // Ajusta el número de bombas que deseas crear
+      setXY: { x: 2300, y: 0, stepX: -100 } // Ajusta la posición y el stepX
+  });
+
+
+    this.platforms.children.iterate(function (platform) {
+        let bomb = bombsLevel2.create(platform.x + Phaser.Math.Between(20, platform.width - 20), platform.y - 30, 'bomb');
+        bomb.setBounce(1, 1);
+        bomb.setVelocity(Phaser.Math.Between(-200, -100), 300);
     });
 
     bombsLevel2.children.iterate(function (child) {
-      child.setBounce(0.3, 0.5); // Ajusta los valores de rebote según tus preferencias
-    });
+      child.setBounce(1, 1); // Ajusta los valores de rebote según tus preferencias
+      child.setVelocity(Phaser.Math.Between(-200, -100), 300); // Velocidad inicial, ajusta según tus necesidades
+  });
 
     this.physics.add.collider(bombsLevel2, this.platforms);
     this.physics.add.collider(this.player, bombsLevel2, this.hitBombLevel2, null, this);
 
-    // En la sección de create() de Scene_play2
+    this.bombsLevel2 = bombsLevel2;
+
     this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this);
 
   }
@@ -128,8 +137,23 @@ class Scene_play2 extends Phaser.Scene {
     if ((this.cursors.up.isDown || this.cursors.space.isDown) && this.player.body.touching.down) {
       this.player.setVelocityY(-400);
     }
-  }
 
+
+    // Movimiento diagonal de las bombas
+    this.bombsLevel2.children.iterate(function (bomb) {
+      // Cambia la velocidad en el eje X a una velocidad constante
+      if (bomb.body.velocity.x === 0) {
+          bomb.setVelocityX(Phaser.Math.Between(-200, -100));
+      }
+
+      // Comprueba si la bomba toca los límites laterales y invierte la velocidad en el eje X
+      if (bomb.x >= 2400 - bomb.width / 2) {
+          bomb.setVelocityX(Phaser.Math.Between(-200, -100));
+      } else if (bomb.x <= bomb.width / 2) {
+          bomb.setVelocityX(Phaser.Math.Between(100, 200));
+      }
+    });
+  }
   collectStar(player, star) {
     star.disableBody(true, true);
 
@@ -139,6 +163,10 @@ class Scene_play2 extends Phaser.Scene {
     // Verifica que this.scoreText esté definido antes de llamar a setText
     if (this.scoreText) {
       this.scoreText.setText('Score: ' + this.score);
+    }
+    if (this.score >= 100) {
+      // Si el puntaje alcanza 100, cambia a la escena 3
+      this.scene.start('Scene_play3');
     }
 
     if (this.stars.countActive(true) === 0) {

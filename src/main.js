@@ -4,9 +4,10 @@ import Menu from './scenes/Menu.js';
 import Winner from './scenes/Winner.js';
 import Game_over from './scenes/Game_over.js';
 import Scene_play2 from './scenes/Scene_play2.js';
+import Scene_play3 from './scenes/Scene_play3.js';
 
 const config = {
-    scene: [Bootloader, Menu, Scene_play, Winner, Game_over, Scene_play2],
+    scene: [Bootloader, Menu, Scene_play, Winner, Game_over, Scene_play2, Scene_play3],
     title: "FPWTP04",
     version: "0.0.1",
     type: Phaser.AUTO,
